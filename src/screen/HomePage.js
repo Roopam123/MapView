@@ -132,14 +132,14 @@ const HomePage = () => {
               draggable={true}
             />
           )}
-          {/* {source && destination && (
+          {source && destination && (
             <Polyline
               coordinates={[source, destination]}
               strokeWidth={2}
               strokeColor={'black'}
             />
-          )} */}
-          {source && destination && (
+          )}
+          {/* {source && destination && (
             <MapViewDirections
               origin={source}
               destination={destination}
@@ -147,7 +147,7 @@ const HomePage = () => {
               strokeWidth={3}
               strokeColor={'blue'}
             />
-          )}
+          )} */}
         </MapView>
       )}
       <View style={styles.btns}>
