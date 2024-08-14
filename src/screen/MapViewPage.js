@@ -15,7 +15,7 @@ import mapStyle from '../mapStyle.json';
 import {getDistance} from 'geolib';
 import MapViewDirections from 'react-native-maps-directions';
 
-const HomePage = () => {
+const MapViewPage = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
   const [hasPermission, setHasPermission] = useState(false);
 
@@ -207,4 +207,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomePage;
+export default MapViewPage;

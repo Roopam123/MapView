@@ -1,32 +1,35 @@
 import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
 import React, {useState} from 'react';
-import HomePage from './HomePage';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import HomeIcon from 'react-native-vector-icons/FontAwesome5';
 import LiveIcons from 'react-native-vector-icons/Fontisto';
 import AccountIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Add from 'react-native-vector-icons/MaterialIcons';
 import LiveScreen from './LiveScreen';
 import AccountScreen from './AccountScreen';
+import MapViewPage from './MapViewPage';
+import AddAmbulance from './AddAmbulance';
 
 const HomeTab = () => {
-  const [homeTab, setHomeTab] = useState('Home');
+  const [mapViewTab, setMapViewTab] = useState('MapView');
   const [live, setLive] = useState('');
   const [account, setAccount] = useState('');
-  const [currentTab, setCurrentTab] = useState('Home');
+  const [addAmbulance, setAddAmbulance] = useState('');
   return (
     <View style={styles.homeContent}>
       {/* conditional tabs */}
-      {homeTab == 'Home' && <HomePage />}
+      {mapViewTab == 'MapView' && <MapViewPage />}
       {live == 'Live' && <LiveScreen />}
       {account == 'Account' && <AccountScreen />}
+      {addAmbulance == 'addAmbulance' && <AddAmbulance />}
       <View style={styles.buttomTab}>
         <TouchableOpacity
           style={styles.tab}
           onPress={() => {
-            setHomeTab('Home');
+            setMapViewTab('MapView');
             setLive('');
             setAccount('');
-            setCurrentTab('Home');
+            setAddAmbulance('');
           }}>
           <HomeIcon name="home" size={25} />
           <Text style={styles.TabText}>Home</Text>
@@ -34,21 +37,32 @@ const HomeTab = () => {
         <TouchableOpacity
           style={styles.tab}
           onPress={() => {
-            setHomeTab('');
+            setMapViewTab('');
             setLive('Live');
             setAccount('');
-            setCurrentTab('Live');
+            setAddAmbulance('');
           }}>
           <LiveIcons name="livestream" size={22} />
-          <Text style={styles.TabText}>Live</Text>
+          <Text style={styles.TabText}>All</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.tab}
           onPress={() => {
-            setHomeTab('');
+            setMapViewTab('');
             setLive('');
+            setAccount('');
+            setAddAmbulance('addAmbulance');
+          }}>
+          <Add name="add" size={32} />
+          <Text style={styles.TabText}>Add Ambulance</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.tab}
+          onPress={() => {
+            setMapViewTab('');
+            setLive('');
+            setAddAmbulance('');
             setAccount('Account');
-            setCurrentTab('Account');
           }}>
           <AccountIcons name="account" size={32} />
           <Text style={styles.TabText}>Account</Text>
