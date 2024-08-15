@@ -1,9 +1,9 @@
 import {View, Text, StyleSheet, Dimensions, Image} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import firestore from '@react-native-firebase/firestore';
-import {FlatList} from 'react-native-gesture-handler';
+import {FlatList, ScrollView} from 'react-native-gesture-handler';
 
-const LiveScreen = () => {
+const AllAmbulance = () => {
   const [ambulanceData, setAmbulanceData] = useState([]);
 
   useEffect(() => {
@@ -102,4 +102,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LiveScreen;
+export default AllAmbulance;

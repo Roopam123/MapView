@@ -5,21 +5,21 @@ import HomeIcon from 'react-native-vector-icons/FontAwesome5';
 import LiveIcons from 'react-native-vector-icons/Fontisto';
 import AccountIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Add from 'react-native-vector-icons/MaterialIcons';
-import LiveScreen from './LiveScreen';
 import AccountScreen from './AccountScreen';
 import MapViewPage from './MapViewPage';
 import AddAmbulance from './AddAmbulance';
+import AllAmbulance from './AllAmbulance';
 
 const HomeTab = () => {
   const [mapViewTab, setMapViewTab] = useState('MapView');
-  const [live, setLive] = useState('');
+  const [allAmbulance, seAllAmbulance] = useState('');
   const [account, setAccount] = useState('');
   const [addAmbulance, setAddAmbulance] = useState('');
   return (
     <View style={styles.homeContent}>
       {/* conditional tabs */}
       {mapViewTab == 'MapView' && <MapViewPage />}
-      {live == 'Live' && <LiveScreen />}
+      {allAmbulance == 'allAmbulance' && <AllAmbulance />}
       {account == 'Account' && <AccountScreen />}
       {addAmbulance == 'addAmbulance' && <AddAmbulance />}
       <View style={styles.buttomTab}>
@@ -27,9 +27,9 @@ const HomeTab = () => {
           style={styles.tab}
           onPress={() => {
             setMapViewTab('MapView');
-            setLive('');
-            setAccount('');
             setAddAmbulance('');
+            setAccount('');
+            seAllAmbulance('');
           }}>
           <HomeIcon name="home" size={25} />
           <Text style={styles.TabText}>Home</Text>
@@ -38,9 +38,10 @@ const HomeTab = () => {
           style={styles.tab}
           onPress={() => {
             setMapViewTab('');
-            setLive('Live');
-            setAccount('');
             setAddAmbulance('');
+            setAccount('');
+            seAllAmbulance('allAmbulance');
+            console.log('All Clicked');
           }}>
           <LiveIcons name="livestream" size={22} />
           <Text style={styles.TabText}>All</Text>
@@ -49,7 +50,7 @@ const HomeTab = () => {
           style={styles.tab}
           onPress={() => {
             setMapViewTab('');
-            setLive('');
+            seAllAmbulance('');
             setAccount('');
             setAddAmbulance('addAmbulance');
           }}>
@@ -60,8 +61,8 @@ const HomeTab = () => {
           style={styles.tab}
           onPress={() => {
             setMapViewTab('');
-            setLive('');
             setAddAmbulance('');
+            seAllAmbulance('');
             setAccount('Account');
           }}>
           <AccountIcons name="account" size={32} />

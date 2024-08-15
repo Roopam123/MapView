@@ -9,7 +9,6 @@ const Splesh = ({navigation}) => {
       handelNavigate();
     }, 2000);
   }, []);
-
   const handelNavigate = async () => {
     const userData = await AsyncStorage.getItem('user');
     if (!userData) {
@@ -23,13 +22,6 @@ const Splesh = ({navigation}) => {
     <View style={styles.splesh}>
       <StatusBar backgroundColor={'rgb(59, 103, 148)'} />
       <Text style={styles.spleshText}>My 💬</Text>
-      <TouchableOpacity
-        style={styles.spleshBtn}
-        onPress={() => {
-          navigation.navigate('SignUp');
-        }}>
-        <Text style={styles.text}>Signup</Text>
-      </TouchableOpacity>
     </View>
   );
 };
