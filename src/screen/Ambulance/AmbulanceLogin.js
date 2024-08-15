@@ -9,10 +9,10 @@ import {
 import React, {useState} from 'react';
 import {ScrollView, TextInput} from 'react-native-gesture-handler';
 import firestore from '@react-native-firebase/firestore';
-import Loader from '../components/Loader';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Loader from '../../components/Loader';
 
-const LoginScreen = ({navigation}) => {
+const AmbulanceLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [visible, setVisible] = useState(false);
@@ -55,12 +55,11 @@ const LoginScreen = ({navigation}) => {
       console.log('Error on the data save on the Async Storage', error);
     }
   };
-
   return (
     <ScrollView style={styles.scroll}>
       <View style={styles.signup}>
         <StatusBar backgroundColor={'rgb(59, 103, 148)'} />
-        <Text style={styles.title}>Patient Login 🧑</Text>
+        <Text style={styles.title}>Ambulance Login 🚑</Text>
         <View style={styles.inputGroup}>
           <Text style={styles.inputText}>EMAIL</Text>
           <TextInput
@@ -154,4 +153,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default AmbulanceLogin;

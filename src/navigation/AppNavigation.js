@@ -5,6 +5,7 @@ import Splesh from '../screen/Splesh';
 import SignUp from '../screen/SignUp';
 import LoginScreen from '../screen/LoginScreen';
 import HomeTab from '../screen/HomeTab';
+import AmbulanceLogin from '../screen/Ambulance/AmbulanceLogin';
 
 const Stack = createStackNavigator();
 const AppNavigation = () => {
@@ -22,13 +23,18 @@ const AppNavigation = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="Login"
+          name="PatinentLogin"
           component={LoginScreen}
           options={{headerShown: false}}
         />
         <Stack.Screen
           name="Home"
           component={HomeTab}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="AmbulanceLogin"
+          component={AmbulanceLogin}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
