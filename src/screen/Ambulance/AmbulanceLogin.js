@@ -12,7 +12,7 @@ import firestore from '@react-native-firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loader from '../../components/Loader';
 
-const AmbulanceLogin = () => {
+const AmbulanceLogin = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [visible, setVisible] = useState(false);
@@ -86,7 +86,7 @@ const AmbulanceLogin = () => {
           <Text
             style={styles.link}
             onPress={() => {
-              navigation.navigate('SignUp');
+              navigation.navigate('AmbulanceRegister');
             }}>
             SignUp
           </Text>

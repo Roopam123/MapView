@@ -36,7 +36,7 @@ const SignUp = ({navigation}) => {
 
       const userId = uuid.v4();
       const res = firestore()
-        .collection('users')
+        .collection('Patient')
         .doc(userId)
         .set({
           name: name,
@@ -44,11 +44,12 @@ const SignUp = ({navigation}) => {
           mobile: mobile,
           password: password,
           userId: userId,
+          userType: 'Patient',
         })
         .then(res => {
           console.log(res);
           Alert.alert('Registration successful');
-          navigation.navigate('Login');
+          navigation.navigate('AmbulanceLogin');
           setName('');
           setEmail('');
           setMobile('');
@@ -87,7 +88,7 @@ const SignUp = ({navigation}) => {
       }>
       <View style={styles.signup}>
         <StatusBar backgroundColor={'rgb(59, 103, 148)'} />
-        <Text style={styles.title}>SIGN UP</Text>
+        <Text style={styles.title}>PATIENT SIGN UP</Text>
         <View style={styles.inputGroup}>
           <Text style={styles.inputText}>NAME</Text>
           <TextInput

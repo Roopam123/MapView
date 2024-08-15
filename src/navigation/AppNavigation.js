@@ -6,6 +6,7 @@ import SignUp from '../screen/SignUp';
 import LoginScreen from '../screen/LoginScreen';
 import HomeTab from '../screen/HomeTab';
 import AmbulanceLogin from '../screen/Ambulance/AmbulanceLogin';
+import AmbulanceRegistar from '../screen/Ambulance/AmbulanceRegistar';
 
 const Stack = createStackNavigator();
 const AppNavigation = () => {
@@ -18,7 +19,7 @@ const AppNavigation = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="SignUp"
+          name="AmbulanceSignUp"
           component={SignUp}
           options={{headerShown: false}}
         />
@@ -35,6 +36,11 @@ const AppNavigation = () => {
         <Stack.Screen
           name="AmbulanceLogin"
           component={AmbulanceLogin}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="AmbulanceRegister"
+          component={AmbulanceRegistar}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

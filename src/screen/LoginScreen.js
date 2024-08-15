@@ -87,7 +87,7 @@ const LoginScreen = ({navigation}) => {
           <Text
             style={styles.link}
             onPress={() => {
-              navigation.navigate('SignUp');
+              navigation.navigate('AmbulanceSignUp');
             }}>
             SignUp
           </Text>
