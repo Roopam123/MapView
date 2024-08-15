@@ -1,6 +1,5 @@
 import {View, Text, StyleSheet, StatusBar} from 'react-native';
 import React, {useEffect} from 'react';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Splesh = ({navigation}) => {
