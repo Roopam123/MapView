@@ -49,6 +49,7 @@ const AmbulanceLogin = ({navigation}) => {
       await AsyncStorage.setItem('email', data.email);
       await AsyncStorage.setItem('mobile', data.mobile);
       await AsyncStorage.setItem('user-id', data.userId);
+      await AsyncStorage.setItem('user_type', data.user_type);
       console.log('Successfully user data save');
       navigation.navigate('Home');
     } catch (error) {

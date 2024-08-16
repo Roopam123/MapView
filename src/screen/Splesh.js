@@ -22,15 +22,14 @@ const Splesh = ({navigation}) => {
   const handelNavigate = async () => {
     const userData = await AsyncStorage.getItem('user');
     setUser_Data(userData);
-    if (!userData) {
-      navigation.navigate('PatinentLogin');
-    } else {
+    if (userData) {
       navigation.navigate('Home');
     }
   };
   const handelRoute = () => {
     if (route) {
       navigation.navigate(route);
+      setRoute('');
     } else {
       alert('Please select a user type');
     }
@@ -55,7 +54,7 @@ const Splesh = ({navigation}) => {
       <StatusBar backgroundColor={'rgb(59, 103, 148)'} />
       <Text style={styles.spleshText}>🚑</Text>
       <Text style={styles.userTypeTitle}>Welcome to our App</Text>
-      {!user_data && (
+      {user_data == undefined && (
         <>
           <Text style={styles.userTypeTitle}>Please Select User Type</Text>
           <View style={styles.userTypeGroup}>

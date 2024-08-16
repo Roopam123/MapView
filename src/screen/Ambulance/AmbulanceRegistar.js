@@ -45,7 +45,7 @@ const AmbulanceRegistar = ({navigation}) => {
           password: password,
           userId: userId,
           vehicleNo: vehicleNo,
-          userType: 'Ambulance',
+          user_type: 'Ambulance',
         })
         .then(res => {
           console.log(res);
@@ -88,7 +88,7 @@ const AmbulanceRegistar = ({navigation}) => {
       }>
       <View style={styles.signup}>
         <StatusBar backgroundColor={'rgb(59, 103, 148)'} />
-        <Text style={styles.title}>PATIENT SIGN UP</Text>
+        <Text style={styles.title}>AMBULANCE SIGN UP</Text>
         <View style={styles.inputGroup}>
           <Text style={styles.inputText}>NAME</Text>
           <TextInput

@@ -19,7 +19,6 @@ const AllAmbulance = () => {
       console.log('Error on the GetAmbulanceData function', error);
     }
   };
-  console.log(ambulanceData);
   return (
     <View style={styles.live}>
       <Text style={styles.title}>All Ambulance</Text>

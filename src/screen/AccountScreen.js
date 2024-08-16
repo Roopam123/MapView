@@ -14,11 +14,16 @@ const AccountScreen = () => {
     const name = await AsyncStorage.getItem('user');
     const email = await AsyncStorage.getItem('email');
     const mobile = await AsyncStorage.getItem('mobile');
-    setUserData({name, email, mobile});
+    const userType = await AsyncStorage.getItem('user_type');
+    setUserData({name, email, mobile, userType});
   };
   // Logout funcelity
   const handelLogOut = async () => {
-    await AsyncStorage.removeItem('user')
+    await AsyncStorage.removeItem('user');
+    await AsyncStorage.removeItem('email');
+    await AsyncStorage.removeItem('mobile');
+    await AsyncStorage.removeItem('user_id');
+    await AsyncStorage.removeItem('user_type')
       .then(res => {
         Alert.alert('Successfully Logout');
         navigation.navigate('Splesh');
@@ -39,6 +44,7 @@ const AccountScreen = () => {
         <Text style={styles.text}>Name: - {userData.name}</Text>
         <Text style={styles.text}>Email:- {userData.email}</Text>
         <Text style={styles.text}>Mobile:- {userData.mobile}</Text>
+        <Text style={styles.text}>User Type:- {userData.userType}</Text>
       </View>
       <TouchableOpacity onPress={handelLogOut}>
         <Text style={styles.btntext}>Log Out</Text>

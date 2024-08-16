@@ -1,5 +1,5 @@
 import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import HomeIcon from 'react-native-vector-icons/FontAwesome5';
 import LiveIcons from 'react-native-vector-icons/Fontisto';
@@ -9,11 +9,21 @@ import AccountScreen from './AccountScreen';
 import MapViewPage from './MapViewPage';
 import AddAmbulance from './AddAmbulance';
 import AllAmbulance from './AllAmbulance';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HomeTab = () => {
+  useEffect(() => {
+    getUserType();
+  }, []);
   const [mapViewTab, setMapViewTab] = useState('MapView');
   const [allAmbulance, seAllAmbulance] = useState('');
   const [account, setAccount] = useState('');
+  const [userTypeData, setUserTypeData] = useState('');
+
+  const getUserType = async () => {
+    const userType = await AsyncStorage.getItem('user_type');
+    setUserTypeData(userType);
+  };
   return (
     <View style={styles.homeContent}>
       {mapViewTab == 'MapView' && (
@@ -23,7 +33,10 @@ const HomeTab = () => {
       )}
       {/* conditional tabs */}
       {mapViewTab == 'MapView' && <MapViewPage />}
-      {allAmbulance == 'allAmbulance' && <AllAmbulance />}
+
+      {allAmbulance == 'allAmbulance' && userTypeData == 'Patient' && (
+        <AllAmbulance />
+      )}
       {account == 'Account' && <AccountScreen />}
       <View style={styles.buttomTab}>
         <TouchableOpacity
@@ -36,17 +49,18 @@ const HomeTab = () => {
           <HomeIcon name="home" size={18} />
           <Text style={styles.TabText}>Home</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.tab}
-          onPress={() => {
-            setMapViewTab('');
-            setAccount('');
-            seAllAmbulance('allAmbulance');
-            console.log('All Clicked');
-          }}>
-          <LiveIcons name="livestream" size={16} />
-          <Text style={styles.TabText}>All Ambulance</Text>
-        </TouchableOpacity>
+        {userTypeData == 'Patient' && (
+          <TouchableOpacity
+            style={styles.tab}
+            onPress={() => {
+              setMapViewTab('');
+              setAccount('');
+              seAllAmbulance('allAmbulance');
+            }}>
+            <LiveIcons name="livestream" size={16} />
+            <Text style={styles.TabText}>All Ambulance</Text>
+          </TouchableOpacity>
+        )}
         <TouchableOpacity
           style={styles.tab}
           onPress={() => {
