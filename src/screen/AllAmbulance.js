@@ -12,7 +12,7 @@ const AllAmbulance = () => {
 
   const getAmbulanceData = async () => {
     try {
-      const ambulance = await firestore().collection('ambulance').get();
+      const ambulance = await firestore().collection('Ambulance').get();
       const ambulanceData = ambulance.docs.map(doc => doc.data());
       setAmbulanceData(ambulanceData);
     } catch (error) {
@@ -22,7 +22,7 @@ const AllAmbulance = () => {
   console.log(ambulanceData);
   return (
     <View style={styles.live}>
-      <Text style={styles.title}>Live Ambulance</Text>
+      <Text style={styles.title}>All Ambulance</Text>
       <View style={styles.ambulanceList}>
         <FlatList
           data={ambulanceData}
@@ -32,15 +32,16 @@ const AllAmbulance = () => {
                 source={require('../Img/ambulance.png')}
                 style={styles.amIcon}
               />
-              <View style={styles.listLeft}>
-                <Text style={styles.name}>{item.name}</Text>
-                <Text style={styles.mobile}>{'+91' + item.mobile_no}</Text>
-              </View>
-              <View style={styles.right}>
-                <Text style={styles.vehical}>
-                  Vehicle No. - {item.ambulance_no}
-                </Text>
-                <Text style={styles.aadhar}>Aadhar No.- {item.aadhar_no}</Text>
+              <View>
+                <View style={styles.listLeft}>
+                  <Text style={styles.name}>{item.name}</Text>
+                </View>
+                <View style={styles.right}>
+                  <Text style={styles.mobile}>{'+91' + item.mobile}</Text>
+                  <Text style={styles.vehical}>
+                    {item.vehicleNo.toUpperCase()}
+                  </Text>
+                </View>
               </View>
             </View>
           )}
@@ -64,6 +65,10 @@ const styles = StyleSheet.create({
     color: 'green',
     marginBottom: 10,
   },
+  right: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
   amIcon: {
     width: 60,
     height: 60,
@@ -77,7 +82,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 10,
     paddingVertical: 10,
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     backgroundColor: '#a8a7a7',
     alignItems: 'center',
   },
@@ -88,13 +93,13 @@ const styles = StyleSheet.create({
   },
   mobile: {
     color: 'green',
-    fontSize: 14,
+    fontSize: 16,
+    marginRight: 10,
   },
   vehical: {
-    fontSize: 15,
+    fontSize: 16,
     color: 'black',
-    marginBottom: 8,
-    marginTop: 5,
+    marginBottom: 15,
   },
   aadhar: {
     fontSize: 15,
