@@ -20,7 +20,7 @@ const AmbulanceLogin = ({navigation}) => {
   const handelLogin = () => {
     setVisible(true);
     firestore()
-      .collection('users')
+      .collection('Ambulance')
       .where('email', '==', email)
       .get()
       .then(res => {

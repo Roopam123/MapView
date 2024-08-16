@@ -17,6 +17,7 @@ const AmbulanceRegistar = ({navigation}) => {
   const [mobile, setMobile] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [vehicleNo, setVehicleNo] = useState('');
   const [refreshing, setRefreshing] = useState(false);
 
   const handelRegister = () => {
@@ -35,7 +36,7 @@ const AmbulanceRegistar = ({navigation}) => {
 
       const userId = uuid.v4();
       const res = firestore()
-        .collection('Patient')
+        .collection('Ambulance')
         .doc(userId)
         .set({
           name: name,
@@ -43,11 +44,12 @@ const AmbulanceRegistar = ({navigation}) => {
           mobile: mobile,
           password: password,
           userId: userId,
-          userType: 'Patient',
+          vehicleNo: vehicleNo,
+          userType: 'Ambulance',
         })
         .then(res => {
           console.log(res);
-          Alert.alert('Registration successful');
+          Alert.alert('Registration Successful Ambulance');
           navigation.navigate('AmbulanceLogin');
           setName('');
           setEmail('');
@@ -112,6 +114,15 @@ const AmbulanceRegistar = ({navigation}) => {
             style={styles.input}
             value={mobile}
             onChangeText={text => setMobile(text)}
+          />
+        </View>
+        <View style={styles.inputGroup}>
+          <Text style={styles.inputText}>VAHICAL NO.</Text>
+          <TextInput
+            placeholder="ENTER YOUR VAHICAL NO."
+            style={styles.input}
+            value={vehicleNo}
+            onChangeText={text => setVehicleNo(text)}
           />
         </View>
         <View style={styles.inputGroup}>

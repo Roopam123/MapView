@@ -140,12 +140,15 @@ const styles = StyleSheet.create({
   textItem: {
     flex: 1,
     fontSize: 16,
+    color: 'black',
   },
   placeholderStyle: {
     fontSize: 16,
+    color: 'black',
   },
   selectedTextStyle: {
     fontSize: 16,
+    color: 'black',
   },
   iconStyle: {
     width: 20,
@@ -154,6 +157,7 @@ const styles = StyleSheet.create({
   inputSearchStyle: {
     height: 40,
     fontSize: 16,
+    color: 'black',
   },
   userTypeTitle: {
     color: 'white',

@@ -20,7 +20,7 @@ const LoginScreen = ({navigation}) => {
   const handelLogin = () => {
     setVisible(true);
     firestore()
-      .collection('users')
+      .collection('Patient')
       .where('email', '==', email)
       .get()
       .then(res => {

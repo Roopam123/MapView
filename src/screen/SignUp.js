@@ -44,7 +44,7 @@ const SignUp = ({navigation}) => {
           mobile: mobile,
           password: password,
           userId: userId,
-          userType: 'Patient',
+          user_type: 'Patient',
         })
         .then(res => {
           console.log(res);
