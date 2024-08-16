@@ -49,7 +49,7 @@ const SignUp = ({navigation}) => {
         .then(res => {
           console.log(res);
           Alert.alert('Registration successful');
-          navigation.navigate('AmbulanceLogin');
+          navigation.navigate('PatinentLogin');
           setName('');
           setEmail('');
           setMobile('');

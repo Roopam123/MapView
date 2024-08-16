@@ -29,6 +29,7 @@ const LoginScreen = ({navigation}) => {
           const data = res.docs[0].data();
           console.log('loginData===>', data);
           Alert.alert('Successfully login');
+          navigation.navigate('Home');
           handelDataSave(data);
         } else {
           Alert.alert('User not found');
@@ -39,6 +40,8 @@ const LoginScreen = ({navigation}) => {
         Alert.alert(
           'User not found please register or enter the valid email and password',
         );
+        setEmail('');
+        setPassword('');
         console.log('error on the handelLogin function', error);
       });
   };
@@ -48,7 +51,8 @@ const LoginScreen = ({navigation}) => {
       await AsyncStorage.setItem('user', data.name);
       await AsyncStorage.setItem('email', data.email);
       await AsyncStorage.setItem('mobile', data.mobile);
-      await AsyncStorage.setItem('user-id', data.userId);
+      await AsyncStorage.setItem('user_id', data.userId);
+      await AsyncStorage.setItem('user_type', data.Patient);
       console.log('Successfully user data save');
       navigation.navigate('Home');
     } catch (error) {

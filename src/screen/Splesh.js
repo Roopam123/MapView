@@ -7,13 +7,13 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const Splesh = ({navigation}) => {
   const [value, setValue] = useState(null);
-  const [route, setRoute] = useState('');
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     handelNavigate();
-  //   }, 2000);
-  // }, []);
+  const [route, setRoute] = useState('PatinentLogin');
+  const [user_data, setUser_Data] = useState('');
+  useEffect(() => {
+    setTimeout(() => {
+      handelNavigate();
+    }, 2000);
+  }, []);
 
   const data = [
     {id: 1, label: 'Patinet', route: 'PatinentLogin'},
@@ -21,14 +21,19 @@ const Splesh = ({navigation}) => {
   ];
   const handelNavigate = async () => {
     const userData = await AsyncStorage.getItem('user');
+    setUser_Data(userData);
     if (!userData) {
-      navigation.navigate('Login');
+      navigation.navigate('PatinentLogin');
     } else {
       navigation.navigate('Home');
     }
   };
   const handelRoute = () => {
-    navigation.navigate(route);
+    if (route) {
+      navigation.navigate(route);
+    } else {
+      alert('Please select a user type');
+    }
   };
   const renderItem = item => {
     return (
@@ -49,40 +54,49 @@ const Splesh = ({navigation}) => {
     <View style={styles.splesh}>
       <StatusBar backgroundColor={'rgb(59, 103, 148)'} />
       <Text style={styles.spleshText}>🚑</Text>
-      <Text style={styles.userTypeTitle}>Please Select User Type</Text>
-      <View style={styles.userTypeGroup}>
-        <Dropdown
-          style={styles.dropdown}
-          placeholderStyle={styles.placeholderStyle}
-          selectedTextStyle={styles.selectedTextStyle}
-          inputSearchStyle={styles.inputSearchStyle}
-          iconStyle={styles.iconStyle}
-          data={data}
-          search
-          maxHeight={300}
-          labelField="label"
-          valueField="value"
-          placeholder="Select item"
-          searchPlaceholder="Search..."
-          value={value}
-          onChange={item => {
-            setValue(item.value);
-            setRoute(item.route);
-          }}
-          renderLeftIcon={() => (
-            <AntDesign
-              style={styles.icon}
-              color="black"
-              name="Safety"
-              size={20}
+      <Text style={styles.userTypeTitle}>Welcome to our App</Text>
+      {!user_data && (
+        <>
+          <Text style={styles.userTypeTitle}>Please Select User Type</Text>
+          <View style={styles.userTypeGroup}>
+            <Dropdown
+              style={styles.dropdown}
+              placeholderStyle={styles.placeholderStyle}
+              selectedTextStyle={styles.selectedTextStyle}
+              inputSearchStyle={styles.inputSearchStyle}
+              iconStyle={styles.iconStyle}
+              data={data}
+              search
+              maxHeight={300}
+              labelField="label"
+              valueField="value"
+              placeholder="Select item"
+              searchPlaceholder="Search..."
+              value={value}
+              onChange={item => {
+                if (item.route) {
+                  setValue(item.value);
+                  setRoute(item.route);
+                } else {
+                  alert('Invalid user type selected');
+                }
+              }}
+              renderLeftIcon={() => (
+                <AntDesign
+                  style={styles.icon}
+                  color="black"
+                  name="Safety"
+                  size={20}
+                />
+              )}
+              renderItem={renderItem}
             />
-          )}
-          renderItem={renderItem}
-        />
-      </View>
-      <TouchableOpacity onPress={handelRoute}>
-        <Text style={styles.btn}>Submit</Text>
-      </TouchableOpacity>
+          </View>
+          <TouchableOpacity onPress={handelRoute}>
+            <Text style={styles.btn}>Submit</Text>
+          </TouchableOpacity>
+        </>
+      )}
     </View>
   );
 };

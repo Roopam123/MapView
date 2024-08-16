@@ -14,58 +14,47 @@ const HomeTab = () => {
   const [mapViewTab, setMapViewTab] = useState('MapView');
   const [allAmbulance, seAllAmbulance] = useState('');
   const [account, setAccount] = useState('');
-  const [addAmbulance, setAddAmbulance] = useState('');
   return (
     <View style={styles.homeContent}>
+      {mapViewTab == 'MapView' && (
+        <View style={styles.titleGroup}>
+          <Text style={styles.title}>Search Ambulance</Text>
+        </View>
+      )}
       {/* conditional tabs */}
       {mapViewTab == 'MapView' && <MapViewPage />}
       {allAmbulance == 'allAmbulance' && <AllAmbulance />}
       {account == 'Account' && <AccountScreen />}
-      {addAmbulance == 'addAmbulance' && <AddAmbulance />}
       <View style={styles.buttomTab}>
         <TouchableOpacity
           style={styles.tab}
           onPress={() => {
             setMapViewTab('MapView');
-            setAddAmbulance('');
             setAccount('');
             seAllAmbulance('');
           }}>
-          <HomeIcon name="home" size={25} />
+          <HomeIcon name="home" size={18} />
           <Text style={styles.TabText}>Home</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.tab}
           onPress={() => {
             setMapViewTab('');
-            setAddAmbulance('');
             setAccount('');
             seAllAmbulance('allAmbulance');
             console.log('All Clicked');
           }}>
-          <LiveIcons name="livestream" size={22} />
-          <Text style={styles.TabText}>All</Text>
+          <LiveIcons name="livestream" size={16} />
+          <Text style={styles.TabText}>All Ambulance</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.tab}
           onPress={() => {
             setMapViewTab('');
-            seAllAmbulance('');
-            setAccount('');
-            setAddAmbulance('addAmbulance');
-          }}>
-          <Add name="add" size={32} />
-          <Text style={styles.TabText}>Add Ambulance</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.tab}
-          onPress={() => {
-            setMapViewTab('');
-            setAddAmbulance('');
             seAllAmbulance('');
             setAccount('Account');
           }}>
-          <AccountIcons name="account" size={32} />
+          <AccountIcons name="account" size={20} />
           <Text style={styles.TabText}>Account</Text>
         </TouchableOpacity>
       </View>
@@ -95,7 +84,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   TabText: {
-    fontSize: 16,
+    fontSize: 14,
+  },
+  titleGroup: {
+    position: 'absolute',
+    zIndex: 10,
+    width: Dimensions.get('window').width,
+    alignItems: 'center',
+    paddingVertical: 10,
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: '600',
+    color: 'green',
   },
 });
 
